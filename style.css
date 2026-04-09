@@ -1,89 +1,123 @@
 body {
   margin: 0;
-  font-family: sans-serif;
-  background: #f4f1ea;
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(to bottom, #f7f3ea, #e7e0d2);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  color: #2f2f2f;
 }
 
+/* 🧘 Layout */
 .hero {
   text-align: center;
 }
 
-.plant {
+/* 🌍 Szene */
+.scene {
   position: relative;
-  height: 200px;
-  margin-bottom: 30px;
+  height: 220px;
+  width: 200px;
+  margin: 0 auto 30px;
 }
 
-/* 🌱 Samen */
+/* 🌱 Erde */
+.ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: #c9b89a;
+  border-radius: 50% 50% 0 0;
+  filter: blur(0.2px);
+}
+
+/* 🌿 Pflanze Container */
+.plant {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 🌰 Samen */
 .seed {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   background: #6b4f2a;
   border-radius: 50%;
   margin: 0 auto;
-  animation: fadeIn 1s ease-in;
+  opacity: 0;
+  animation: appear 1s ease forwards;
 }
 
-/* 🌿 Sprössling */
-.sprout {
-  width: 4px;
+/* 🌱 Stamm */
+.stem {
+  width: 3px;
   height: 0;
-  background: green;
+  background: linear-gradient(#3d7a3a, #2f5f2c);
   margin: 0 auto;
-  animation: grow 2s ease-out forwards;
-  animation-delay: 1s;
+  border-radius: 3px;
+  animation: growStem 2.2s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+/* 🍃 Blätter */
+.leaves {
+  width: 18px;
+  height: 18px;
+  background: #3d7a3a;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-20deg) scale(0);
+  margin: 0 auto;
+  animation: growLeaves 1.2s ease-out forwards;
+  animation-delay: 2.2s;
 }
 
 /* 🏡 Haus */
 .house {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 28px;
   background: #cfa77a;
   margin: 10px auto 0;
   opacity: 0;
+  transform: translateY(10px);
+  animation: houseIn 1s ease forwards;
+  animation-delay: 3.4s;
   position: relative;
-  animation: showHouse 1s ease forwards;
-  animation-delay: 3s;
 }
 
+/* Dach */
 .house::before {
   content: "";
   position: absolute;
-  top: -20px;
+  top: -18px;
   left: 0;
   width: 0;
   height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-bottom: 20px solid #8b5e3c;
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-bottom: 18px solid #8b5e3c;
 }
 
-/* Animationen */
-@keyframes grow {
-  from {
-    height: 0;
-  }
-  to {
-    height: 60px;
-  }
+/* ✨ Animationen */
+@keyframes appear {
+  to { opacity: 1; }
 }
 
-@keyframes showHouse {
-  to {
-    opacity: 1;
-    transform: scale(1.1);
-  }
+@keyframes growStem {
+  from { height: 0; }
+  to { height: 70px; }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
+@keyframes growLeaves {
+  to { transform: rotate(-20deg) scale(1); }
+}
+
+@keyframes houseIn {
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
